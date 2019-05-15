@@ -13,6 +13,27 @@ const ConversationListWrapper = styled.ul({
   "list-style": 'none',
 })
 
+const LoadMoreBox = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  padding: 10
+})
+
+const LoadMoreMessage = styled.div({
+  color: '#999',
+  fontSize: '0.8em',
+}, ({ hasMore }) => {
+  const styles = []
+  if (hasMore) {
+    styles.push({
+      cursor: 'pointer',
+    })
+  }
+  return styles;
+});
+
 const LoadMore = () => {
   
 }
@@ -32,7 +53,6 @@ const EmptyBox = () => (
 
 export default class extends Component {
   render() {
-    
     return (
       <ConversationListWrapper>
         <LoadMore />
