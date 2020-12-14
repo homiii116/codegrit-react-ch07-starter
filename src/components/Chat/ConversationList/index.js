@@ -38,6 +38,7 @@ const LoadMore = () => {
   
 }
 
+
 const EmptyBox = () => (
   <div css={{
     display: 'flex',
@@ -52,6 +53,17 @@ const EmptyBox = () => (
 );
 
 export default class extends Component {
+  state = {
+    isLoading: true,
+    data: null
+  }
+
+  componentDidMount() {
+    fetchData().then((data) => {
+      this.setState({ isLoading: false, data})
+    })
+  }
+
   render() {
     return (
       <ConversationListWrapper>
