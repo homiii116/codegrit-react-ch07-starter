@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react';
 import React, { Component } from 'react';
 import styled from '@emotion/styled/macro';
 import ConversationListItem from '../ConversationListItem';
@@ -38,7 +40,6 @@ const LoadMore = () => {
   
 }
 
-
 const EmptyBox = () => (
   <div css={{
     display: 'flex',
@@ -55,20 +56,43 @@ const EmptyBox = () => (
 export default class extends Component {
   state = {
     isLoading: true,
-    data: null
+    chat: null
   }
 
   componentDidMount() {
-    fetchData().then((data) => {
-      this.setState({ isLoading: false, data})
+    this.loading()
+      .then((data) => {
+        this.setState({
+          isLoading: false,
+          chat: data
+        })
+      })
+  }
+
+  loading = () => {
+    return new Promise(function (resolve) {
+      setTimeout(() => {
+        resolve()
+      }, 1000)
     })
   }
 
   render() {
+    const { chat, isLoading } = this.state;
+    let articlePart;
+    if (isLoading === true) {
+      articlePart = <EmptyBox />
+    } else {
+      articlePart = (
+        <ConversationListWrapper>
+          {/* <LoadMore /> */}
+        </ConversationListWrapper>
+      )
+    }
     return (
-      <ConversationListWrapper>
-        <LoadMore />
-      </ConversationListWrapper>
+        <div>
+          {articlePart}
+        </div>
     );
   }
 
