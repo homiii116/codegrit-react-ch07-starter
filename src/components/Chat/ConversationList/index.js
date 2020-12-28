@@ -49,50 +49,29 @@ const EmptyBox = () => (
     width: "360px",
     border: "1px solid #ddd",
   }}>
-    <Loader width={60} height={60} />
+    <LoadMoreBox>
+      <Loader width={60} height={60} />
+    </LoadMoreBox>
   </div>
 );
 
 export default class extends Component {
   state = {
-    isLoading: true,
-    chat: null
-  }
-
-  componentDidMount() {
-    this.loading()
-      .then((data) => {
-        this.setState({
-          isLoading: false,
-          chat: data
-        })
-      })
-  }
-
-  loading = () => {
-    return new Promise(function (resolve) {
-      setTimeout(() => {
-        resolve()
-      }, 1000)
-    })
+    chosenId: 1,
+    loadingInitial: false,
+    conversations: []
   }
 
   render() {
-    const { chat, isLoading } = this.state;
-    let articlePart;
-    if (isLoading === true) {
-      articlePart = <EmptyBox />
-    } else {
-      articlePart = (
-        <ConversationListWrapper>
-          {/* <LoadMore /> */}
-        </ConversationListWrapper>
-      )
-    }
+    const { chosenId, conversations } = this.state;
     return (
-        <div>
-          {articlePart}
-        </div>
+      <ConversationListWrapper>
+        <EmptyBox
+         chosenId={chosenId}
+         conversations={conversations} />
+
+        {/* <LoadMore /> */}
+      </ConversationListWrapper>
     );
   }
 

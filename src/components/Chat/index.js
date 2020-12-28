@@ -16,15 +16,25 @@ export default class extends Component {
   
   componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
+    fetchChatData().then((data) => {
+      this.setState({
+        loadingInitial: false, 
+        data
+      })
+    })
   }
-
+  
   fetchMoreConversations = () => {
     // 2ページ目以降のデータを取得しましょう。
   }
 
   render() {
+    const { chosenId, loadingInitial, conversations } = this.state;
     return (
-      <ConversationList />
+      <ConversationList
+        chosenId={chosenId}
+        loadingInitial={loadingInitial}
+        conversations={conversations} />
     );
   }
 }
