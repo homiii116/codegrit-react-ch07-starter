@@ -63,13 +63,13 @@ export default class extends Component {
   }
 
   render() {
-    const { chosenId, conversations } = this.state;
+    const { chosenId, loadingInitial, conversations } = this.state;
+    let articlePart;
+    if (loadingInitial === false ) {
+      articlePart = <EmptyBox />
+    } else {}
     return (
       <ConversationListWrapper>
-        <EmptyBox
-         chosenId={chosenId}
-         conversations={conversations} />
-
         {/* <LoadMore /> */}
       </ConversationListWrapper>
     );
