@@ -65,9 +65,9 @@ export default class extends Component {
   render() {
     const { chosenId, loadingInitial, conversations } = this.state;
     let articlePart;
-    if (loadingInitial === false ) {
+    if (loadingInitial === false ) {　//←最初のローディングがまだならば、EmpotyBoxを返す。
       articlePart = <EmptyBox />
-    } else {}
+    } else {} //←最初のローディングが終わったら、データを表示させたい。。
     return (
       <ConversationListWrapper>
         {/* <LoadMore /> */}
