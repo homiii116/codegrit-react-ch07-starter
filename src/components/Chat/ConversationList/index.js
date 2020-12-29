@@ -36,8 +36,12 @@ const LoadMoreMessage = styled.div({
   return styles;
 });
 
-const LoadMore = () => {
-  
+const LoadMore = ({ loadingInitial }) => {
+  if (loadingInitial === false) {
+    return <EmptyBox />
+  } else {
+    return <LoadMoreBox />
+  }
 }
 
 const EmptyBox = () => (
@@ -49,28 +53,17 @@ const EmptyBox = () => (
     width: "360px",
     border: "1px solid #ddd",
   }}>
-    <LoadMoreBox>
-      <Loader width={60} height={60} />
-    </LoadMoreBox>
+    <Loader width={60} height={60} />
   </div>
 );
 
 export default class extends Component {
-  state = {
-    chosenId: 1,
-    loadingInitial: false,
-    conversations: []
-  }
 
   render() {
-    const { chosenId, loadingInitial, conversations } = this.state;
-    let articlePart;
-    if (loadingInitial === false ) {　//←最初のローディングがまだならば、EmpotyBoxを返す。
-      articlePart = <EmptyBox />
-    } else {} //←最初のローディングが終わったら、データを表示させたい。。
+    // const { chosenId, loadingInitial, conversations } = this.state;
     return (
       <ConversationListWrapper>
-        {/* <LoadMore /> */}
+        <LoadMore />
       </ConversationListWrapper>
     );
   }

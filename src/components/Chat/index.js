@@ -29,12 +29,23 @@ export default class extends Component {
   }
 
   render() {
-    const { chosenId, loadingInitial, conversations } = this.state;
+    const {
+      chosenId,
+      page,
+      hasNextPage,
+      conversations,
+      loadingInitial,
+      loadingMore
+    } = this.state;
     return (
       <ConversationList
         chosenId={chosenId}
+        page={page}
+        hasNextPage={hasNextPage}
+        conversations={conversations}
         loadingInitial={loadingInitial}
-        conversations={conversations} />
+        loadingMore={loadingMore}
+      />
     );
   }
 }
