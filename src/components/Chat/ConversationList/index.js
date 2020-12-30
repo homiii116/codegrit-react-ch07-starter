@@ -36,12 +36,19 @@ const LoadMoreMessage = styled.div({
   return styles;
 });
 
-const LoadMore = ({ loadingInitial }) => {
-  if (loadingInitial === false) {
-    return <EmptyBox />
-  } else {
-    return <LoadMoreBox />
+const LoadMore = ({ loadingInitial, loadingMore, hasNextPage }) => {
+  if (loadingInitial) return <div />
+  
+  if (loadingMore) {
+    return <LoadMoreBox><Loader /></LoadMoreBox>
   }
+  
+  if (hasNextPage) {
+    return <LoadMoreMessage hasMore={true}>更に読み込む</LoadMoreMessage>
+  } else {
+
+  }
+
 }
 
 const EmptyBox = () => (
@@ -60,10 +67,17 @@ const EmptyBox = () => (
 export default class extends Component {
 
   render() {
-    // const { chosenId, loadingInitial, conversations } = this.state;
+    const { loadingInitial, loadingMore } = this.state;
+    if (loadingInitial) {
+      return <EmptyBox />
+    }
+    
+    
     return (
       <ConversationListWrapper>
-        <LoadMore />
+        <LoadMore 
+          loadingInitial={loadingInitial}
+          loadingMore={loadingMore} />
       </ConversationListWrapper>
     );
   }
