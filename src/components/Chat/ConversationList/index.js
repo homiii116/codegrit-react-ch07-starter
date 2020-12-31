@@ -67,14 +67,24 @@ const EmptyBox = () => (
 export default class extends Component {
 
   render() {
-    const { loadingInitial, loadingMore } = this.state;
+    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage, page } = this.state;
     if (loadingInitial) {
       return <EmptyBox />
     }
-    
+    const conversationList = conversations.map((conversation) => {
+      const { isChosen } = chosenId === conversation.id;
+      return 
+      <ConversationListItem 
+        key={isChosen}  
+        isChosen={isChosen}
+        hasNextPage={hasNextPage}
+        page={page}
+        />
+    })
     
     return (
       <ConversationListWrapper>
+        {conversationList}
         <LoadMore 
           loadingInitial={loadingInitial}
           loadingMore={loadingMore} />
