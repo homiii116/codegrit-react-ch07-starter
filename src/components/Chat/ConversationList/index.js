@@ -73,7 +73,7 @@ export default class extends Component {
       const { isChosen } = chosenId === conversation.id;
       return ( //丸括弧が抜けていた
         <ConversationListItem 
-          key={isChosen}  //conversation.id; ??
+          key={conversation.id}  //isChosen; ??
           isChosen={isChosen}
           hasNextPage={hasNextPage}
           page={page}
