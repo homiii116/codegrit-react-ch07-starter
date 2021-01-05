@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
 import React, { Component } from 'react';
 import styled from '@emotion/styled/macro';
 import ConversationListItem from '../ConversationListItem';
@@ -73,13 +71,14 @@ export default class extends Component {
     }
     const conversationList = conversations.map((conversation) => {
       const { isChosen } = chosenId === conversation.id;
-      return 
-      <ConversationListItem 
-        key={isChosen}  
-        isChosen={isChosen}
-        hasNextPage={hasNextPage}
-        page={page}
+      return ( //丸括弧が抜けていた
+        <ConversationListItem 
+          key={isChosen}  //conversation.id; ??
+          isChosen={isChosen}
+          hasNextPage={hasNextPage}
+          page={page}
         />
+      )
     })
     
     return (
