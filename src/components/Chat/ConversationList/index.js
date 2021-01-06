@@ -44,7 +44,7 @@ const LoadMore = ({ loadingInitial, loadingMore, hasNextPage }) => {
   if (hasNextPage) {
     return <LoadMoreMessage hasMore={true}>更に読み込む</LoadMoreMessage>
   } else {
-
+    return <LoadMoreMessage hasMore={false}>これ以上ありません</LoadMoreMessage> //props不要であれば削除
   }
 
 }
@@ -65,20 +65,17 @@ const EmptyBox = () => (
 export default class extends Component {
 
   render() {
-    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage, page } = this.state;
+    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage } = this.state;
     if (loadingInitial) {
       return <EmptyBox />
     }
     const conversationList = conversations.map((conversation) => {
       const { isChosen } = chosenId === conversation.id;
-      return ( //丸括弧が抜けていた
-        <ConversationListItem 
-          key={conversation.id}  //isChosen; ??
+      return <ConversationListItem 
+          key={conversation.id}  
           isChosen={isChosen}
           hasNextPage={hasNextPage}
-          page={page}
         />
-      )
     })
     
     return (

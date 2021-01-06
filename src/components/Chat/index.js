@@ -14,18 +14,18 @@ export default class extends Component {
 
   handleChooseConversation = () => {}
   
-  componentDidMount() {
+  async componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
-    fetchChatData().then((data) => {
+    const chatData = await fetchChatData();
       this.setState({
         loadingInitial: false, 
-        data
+        conversations: chatData.conversations
       })
-    })
   }
   
   fetchMoreConversations = () => {
     // 2ページ目以降のデータを取得しましょう。
+
   }
 
   render() {
