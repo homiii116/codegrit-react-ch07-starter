@@ -3,6 +3,15 @@ import styled from '@emotion/styled/macro';
 import ConversationListItem from '../ConversationListItem';
 import { ReactComponent as Loader } from '../../../images/loading.svg';
 
+const LoadingiInitialWrapper = styled.div({
+  "height": "360px",
+  "width": "360px",
+  "display": "flex",
+  "alignItems": 'center',
+  "justifyContent": 'center',
+  "border": "1px solid #ddd",
+})
+
 const ConversationListWrapper = styled.ul({
   "height": "360px",
   "width": "360px",
@@ -38,13 +47,29 @@ const LoadMore = ({ loadingInitial, loadingMore, hasNextPage }) => {
   if (loadingInitial) return <div />
   
   if (loadingMore) {
-    return <LoadMoreBox><Loader /></LoadMoreBox>
+    return (
+      <LoadingiInitialWrapper>
+        <Loader />
+      </LoadingiInitialWrapper>
+    )
   }
   
   if (hasNextPage) {
-    return <LoadMoreMessage hasMore={true}>更に読み込む</LoadMoreMessage>
+    return (
+      <LoadMoreBox>
+        <LoadMoreMessage hasMore={true}>
+          更に読み込む
+        </LoadMoreMessage>
+      </LoadMoreBox>
+    )
   } else {
-    return <LoadMoreMessage hasMore={false}>これ以上ありません</LoadMoreMessage> //props不要であれば削除
+    return (
+      <LoadMoreBox>
+        <LoadMoreMessage hasMore={false}>
+          これ以上ありません
+        </LoadMoreMessage> 
+      </ LoadMoreBox>
+    )
   }
 
 }
@@ -65,9 +90,16 @@ const EmptyBox = () => (
 export default class extends Component {
 
   render() {
-    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage } = this.state;
+    console.log(this.state);
+    console.log(this.props);
+
+    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage } = this.props;
     if (loadingInitial) {
-      return <EmptyBox />
+      return (
+        <LoadingiInitialWrapper>
+          <EmptyBox />
+        </ LoadingiInitialWrapper>
+      )
     }
     const conversationList = conversations.map((conversation) => {
       const { isChosen } = chosenId === conversation.id;
@@ -75,6 +107,7 @@ export default class extends Component {
           key={conversation.id}  
           isChosen={isChosen}
           hasNextPage={hasNextPage}
+          conversation={conversation}
         />
     })
     

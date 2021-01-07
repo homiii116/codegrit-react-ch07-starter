@@ -23,8 +23,9 @@ export default class extends Component {
       })
   }
   
-  fetchMoreConversations = () => {
+  fetchMoreConversations = async() => {
     // 2ページ目以降のデータを取得しましょう。
+    const moreChatData = await fetchChatData()
 
   }
 
