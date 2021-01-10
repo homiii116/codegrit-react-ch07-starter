@@ -16,7 +16,7 @@ export default class extends Component {
   
   async componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
-    const chatData = await fetchChatData();
+    const chatData = await fetchChatData(1);
       this.setState({
         loadingInitial: false, 
         conversations: chatData.conversations
@@ -25,8 +25,11 @@ export default class extends Component {
   
   fetchMoreConversations = async() => {
     // 2ページ目以降のデータを取得しましょう。
-    const moreChatData = await fetchChatData()
-
+    const moreChatData = await fetchChatData(2);
+    moreChatData.conversations.map((data) => {
+      return this.state.conversations.push(data)
+    })
+    console.log(this.state.conversations);
   }
 
   render() {
