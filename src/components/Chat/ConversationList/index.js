@@ -88,10 +88,18 @@ const EmptyBox = () => (
 );
 
 export default class extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+
+  //   }
+  // }
+  handleClick = (e) => {
+    e.preventDefault();
+
+  }
 
   render() {
-    console.log(this.state);
-    console.log(this.props);
 
     const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage } = this.props;
     if (loadingInitial) {

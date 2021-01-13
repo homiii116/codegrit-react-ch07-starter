@@ -16,20 +16,24 @@ export default class extends Component {
   
   async componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
-    const chatData = await fetchChatData(1);
-      this.setState({
-        loadingInitial: false, 
-        conversations: chatData.conversations
-      })
+    const chatData = await fetchChatData();
+    this.setState({
+      loadingInitial: false, 
+      conversations: chatData.conversations
+    })
   }
   
   fetchMoreConversations = async() => {
     // 2ページ目以降のデータを取得しましょう。
-    const moreChatData = await fetchChatData(2);
-    moreChatData.conversations.map((data) => {
-      return this.state.conversations.push(data)
+    this.setState({
+      loadingMore: true
     })
-    console.log(this.state.conversations);
+    let morePage = this.state.page + 1;
+    const moreChatData = await fetchChatData(morePage);
+    this.setState({
+      page: morePage,
+      loadingMore: false
+    })
   }
 
   render() {
@@ -41,6 +45,7 @@ export default class extends Component {
       loadingInitial,
       loadingMore
     } = this.state;
+
     return (
       <ConversationList
         chosenId={chosenId}
@@ -49,6 +54,7 @@ export default class extends Component {
         conversations={conversations}
         loadingInitial={loadingInitial}
         loadingMore={loadingMore}
+        fetchMoreConversations={this.fetchMoreConversations}
       />
     );
   }
