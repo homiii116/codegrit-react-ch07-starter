@@ -34,6 +34,7 @@ export default class extends Component {
       page: morePage,
       loadingMore: false
     })
+    console.log(moreChatData);
   }
 
   render() {

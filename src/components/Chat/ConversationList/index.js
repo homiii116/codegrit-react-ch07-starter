@@ -65,7 +65,9 @@ const LoadMore = ({ loadingInitial, loadingMore, hasNextPage }) => {
   } else {
     return (
       <LoadMoreBox>
-        <LoadMoreMessage hasMore={false}>
+        <LoadMoreMessage 
+          hasMore={false}
+        >
           これ以上ありません
         </LoadMoreMessage> 
       </ LoadMoreBox>
