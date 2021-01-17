@@ -23,17 +23,22 @@ export default class extends Component {
     })
   }
   
-  fetchMoreConversations = async() => {
+  fetchMoreConversations = async (e = null) => {
     // 2ページ目以降のデータを取得しましょう。
+    if(e) e.preventDefault();
     this.setState({
       loadingMore: true
     })
     let morePage = this.state.page + 1;
     const moreChatData = await fetchChatData(morePage);
-    this.setState({
-      page: morePage,
-      loadingMore: false
-    })
+    this.setState(state => {
+      return {
+        page: morePage,
+        hasNextPage: moreChatData.hasNextPage,
+        conversations: state.conversations.concat(moreChatData.conversations),
+        loadingMore: false
+      }
+    });
     console.log(moreChatData);
   }
 
