@@ -57,7 +57,7 @@ const LoadMore = ({ loadingInitial, loadingMore, hasNextPage, fetchMoreConversat
   if (hasNextPage) {
     return (
       <LoadMoreBox>
-        <LoadMoreMessage hasMore={true} fetchMoreConversations={fetchMoreConversations}>
+        <LoadMoreMessage hasMore={true} onClick={fetchMoreConversations}>
           更に読み込む
         </LoadMoreMessage>
       </LoadMoreBox>
@@ -91,11 +91,6 @@ const EmptyBox = () => (
 
 export default class extends Component {
 
-  handleClick = (e) => {
-    e.preventDefault();
-
-  }
-
   render() {
 
     const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage, fetchMoreConversations } = this.props;
@@ -123,6 +118,7 @@ export default class extends Component {
           loadingInitial={loadingInitial}
           loadingMore={loadingMore}
           hasNextPage={hasNextPage}
+          conversations={conversations}
           fetchMoreConversations={fetchMoreConversations} />
       </ConversationListWrapper>
     );

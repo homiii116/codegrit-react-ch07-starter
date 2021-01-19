@@ -9,7 +9,7 @@ export default class extends Component {
     hasNextPage: true,
     conversations: [],
     loadingInitial: true,
-    loadingMore: false
+    loadingMore: false,
   }
 
   handleChooseConversation = () => {}
@@ -22,7 +22,7 @@ export default class extends Component {
       conversations: chatData.conversations
     })
   }
-  
+
   fetchMoreConversations = async (e = null) => {
     // 2ページ目以降のデータを取得しましょう。
     if(e) e.preventDefault();
