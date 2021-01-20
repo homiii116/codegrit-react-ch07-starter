@@ -65,7 +65,12 @@ const LastMessage = styled.div({
 })
 
 const getFormattedDate = (unixTime) => {
-  moment.locale('ja'); // ロケールを日本語にセットします。
+  moment.locale('ja'); // ロケールを日本語にセットします。現在の時間を取得。moment
+  if (SEVEN_DAYS_AGO) {
+    console.log('7日前', unixTime);
+  } else {
+    console.log('7日前がfalse', unixTime);
+  }
 } 
 
 const ConversationListItem = ({ 
@@ -73,6 +78,7 @@ const ConversationListItem = ({
   conversation, 
   isChosen
 }) => {
+  const showDate = getFormattedDate();
   return (
     <ListItemWrapper active={isChosen}>
       <AvatarWrapper>
@@ -86,6 +92,7 @@ const ConversationListItem = ({
             {conversation.user.name}
           </div>
           <LastChatTime>
+            {showDate}
             時間を表示
           </LastChatTime>
         </ChatUserUpper>

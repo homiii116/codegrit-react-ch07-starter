@@ -52,15 +52,19 @@ export default class extends Component {
       loadingMore
     } = this.state;
 
+    const conversationListProps = {        
+      chosenId,
+      page,
+      hasNextPage,
+      conversations,
+      loadingInitial,
+      loadingMore,
+      fetchMoreConversations: this.fetchMoreConversations
+    } 
+
     return (
       <ConversationList
-        chosenId={chosenId}
-        page={page}
-        hasNextPage={hasNextPage}
-        conversations={conversations}
-        loadingInitial={loadingInitial}
-        loadingMore={loadingMore}
-        fetchMoreConversations={this.fetchMoreConversations}
+        {...conversationListProps}
       />
     );
   }
