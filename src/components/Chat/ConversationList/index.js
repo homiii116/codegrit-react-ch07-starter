@@ -93,7 +93,7 @@ export default class extends Component {
 
   render() {
 
-    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage, fetchMoreConversations } = this.props;
+    const { loadingInitial, loadingMore, conversations, chosenId, hasNextPage, fetchMoreConversations, handleChooseConversation } = this.props;
     if (loadingInitial) {
       return (
         <LoadingiInitialWrapper>
@@ -108,6 +108,7 @@ export default class extends Component {
           isChosen={isChosen}
           hasNextPage={hasNextPage}
           conversation={conversation}
+          handleChooseConversation={handleChooseConversation}
         />
     })
     

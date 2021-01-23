@@ -12,7 +12,11 @@ export default class extends Component {
     loadingMore: false,
   }
 
-  handleChooseConversation = () => {}
+  handleChooseConversation = (id) => {
+    this.setState({
+      chosenId: id
+    })
+  }
   
   async componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
@@ -59,7 +63,8 @@ export default class extends Component {
       conversations,
       loadingInitial,
       loadingMore,
-      fetchMoreConversations: this.fetchMoreConversations
+      fetchMoreConversations: this.fetchMoreConversations,
+      handleChooseConversation: this.handleChooseConversation
     } 
 
     return (

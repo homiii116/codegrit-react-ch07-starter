@@ -64,9 +64,21 @@ const LastMessage = styled.div({
   "whiteSpace": "nowrap"
 })
 
+const ConversationListStyle = styled.div({
+},({ selected }) => {
+  const styles = []
+    if (selected) {
+      styles.push({
+        "backgroundColor": "lightGray",
+          cursor: 'pointer'
+      })
+    }
+    return styles
+  }
+)
+
 const getFormattedDate = (unixTime) => {
   moment.locale('ja'); // ロケールを日本語にセットします。
-  const now = moment(); //現在の時間を取得　要らない？
   const date = parseInt(unixTime); //unixTimeを整数にする
 
   if ( date >= SEVEN_DAYS_AGO) { //7日前未満だったら
@@ -85,7 +97,7 @@ const ConversationListItem = ({
 }) => {
   const showDate = getFormattedDate();
   return (
-    <ListItemWrapper active={isChosen}>
+    <ListItemWrapper active={isChosen} onClick={handleChooseConversation}>
       <AvatarWrapper>
         <AvatarImage
           alt='アバター'
