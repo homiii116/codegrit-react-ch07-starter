@@ -43,6 +43,19 @@ const LoadMoreMessage = styled.div({
   return styles;
 });
 
+const ConversationListStyle = styled.div({
+},({ selected }) => {
+  const styles = []
+    if (selected) {
+      styles.push({
+        "backgroundColor": "lightGray",
+          cursor: 'pointer'
+      })
+    }
+    return styles
+  }
+)
+
 const LoadMore = ({ loadingInitial, loadingMore, hasNextPage, fetchMoreConversations }) => {
   if (loadingInitial) return <div />
   
@@ -103,13 +116,16 @@ export default class extends Component {
     }
     const conversationList = conversations.map((conversation) => {
       const { isChosen } = chosenId === conversation.id;
-      return <ConversationListItem 
-          key={conversation.id}  
-          isChosen={isChosen}
-          hasNextPage={hasNextPage}
-          conversation={conversation}
-          handleChooseConversation={handleChooseConversation}
-        />
+      return (
+        <ConversationListStyle selected={ {isChosen}  ? true : false} onClick={handleChooseConversation}>
+          <ConversationListItem 
+            key={conversation.id}  
+            isChosen={isChosen}
+            hasNextPage={hasNextPage}
+            conversation={conversation}
+          />
+        </ConversationListStyle>
+      )
     })
     
     return (

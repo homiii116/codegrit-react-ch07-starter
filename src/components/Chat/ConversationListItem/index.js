@@ -64,18 +64,6 @@ const LastMessage = styled.div({
   "whiteSpace": "nowrap"
 })
 
-const ConversationListStyle = styled.div({
-},({ selected }) => {
-  const styles = []
-    if (selected) {
-      styles.push({
-        "backgroundColor": "lightGray",
-          cursor: 'pointer'
-      })
-    }
-    return styles
-  }
-)
 
 const getFormattedDate = (unixTime) => {
   moment.locale('ja'); // ロケールを日本語にセットします。
@@ -97,7 +85,7 @@ const ConversationListItem = ({
 }) => {
   const showDate = getFormattedDate();
   return (
-    <ListItemWrapper active={isChosen} onClick={handleChooseConversation}>
+    <ListItemWrapper active={isChosen}>
       <AvatarWrapper>
         <AvatarImage
           alt='アバター'
