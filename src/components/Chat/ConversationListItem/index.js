@@ -83,9 +83,10 @@ const ConversationListItem = ({
   conversation, 
   isChosen
 }) => {
-  const showDate = getFormattedDate();
+  const showDate = getFormattedDate(conversation.lastMessage.sentAt);
+  
   return (
-    <ListItemWrapper active={isChosen}>
+    <ListItemWrapper active={isChosen} onClick={(e) => handleChooseConversation(e, conversation.id)}>
       <AvatarWrapper>
         <AvatarImage
           alt='アバター'
@@ -97,7 +98,7 @@ const ConversationListItem = ({
             {conversation.user.name}
           </div>
           <LastChatTime>
-            {getFormattedDate(conversation.lastMessage.sentAt)}
+            {showDate}
           </LastChatTime>
         </ChatUserUpper>
         <LastMessage>

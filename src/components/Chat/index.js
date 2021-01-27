@@ -12,7 +12,8 @@ export default class extends Component {
     loadingMore: false,
   }
 
-  handleChooseConversation = (id) => {
+  handleChooseConversation = (e, id) => {
+    console.log(e);
     this.setState({
       chosenId: id
     })

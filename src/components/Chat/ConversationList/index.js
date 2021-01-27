@@ -120,8 +120,8 @@ export default class extends Component {
         <ConversationListItem 
           key={conversation.id} 
           isChosen={isChosen}
-          hasNextPage={hasNextPage}
           conversation={conversation}
+          handleChooseConversation={handleChooseConversation}
         />
       )
     })
