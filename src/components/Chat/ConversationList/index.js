@@ -43,27 +43,27 @@ const LoadMoreMessage = styled.div({
   return styles;
 });
 
-const ConversationListStyle = styled.div({
-},({ selected }) => {
-  const styles = []
-    if (selected) {
-      styles.push({
-        "backgroundColor": "lightGray",
-          cursor: 'pointer'
-      })
-    }
-    return styles
-  }
-)
+// const ConversationListStyle = styled.div({
+// },({ selected }) => {
+//   const styles = []
+//     if (selected) {
+//       styles.push({
+//         backgroundColor: "lightGray",
+//         cursor: 'pointer'
+//       })
+//     }
+//     return styles
+//   }
+// )
 
 const LoadMore = ({ loadingInitial, loadingMore, hasNextPage, fetchMoreConversations }) => {
   if (loadingInitial) return <div />
   
   if (loadingMore) {
     return (
-      <LoadingiInitialWrapper>
+      <LoadMoreBox>
         <Loader />
-      </LoadingiInitialWrapper>
+      </LoadMoreBox>
     )
   }
   
@@ -111,20 +111,18 @@ export default class extends Component {
       return (
         <LoadingiInitialWrapper>
           <EmptyBox />
-        </ LoadingiInitialWrapper>
+        </LoadingiInitialWrapper>
       )
     }
     const conversationList = conversations.map((conversation) => {
-      const { isChosen } = chosenId === conversation.id;
+      const isChosen = chosenId === conversation.id;
       return (
-        <ConversationListStyle selected={ {isChosen}  ? true : false} onClick={handleChooseConversation}>
-          <ConversationListItem 
-            key={conversation.id}  
-            isChosen={isChosen}
-            hasNextPage={hasNextPage}
-            conversation={conversation}
-          />
-        </ConversationListStyle>
+        <ConversationListItem 
+          key={conversation.id} 
+          isChosen={isChosen}
+          hasNextPage={hasNextPage}
+          conversation={conversation}
+        />
       )
     })
     

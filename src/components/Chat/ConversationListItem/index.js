@@ -97,7 +97,7 @@ const ConversationListItem = ({
             {conversation.user.name}
           </div>
           <LastChatTime>
-            {showDate}
+            {getFormattedDate(conversation.lastMessage.sentAt)}
           </LastChatTime>
         </ChatUserUpper>
         <LastMessage>
